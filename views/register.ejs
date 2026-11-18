@@ -1,0 +1,25 @@
+<%- include('partials/header') %>
+<section class="auth">
+  <%- include('partials/auth-side', { heading: 'Join in seconds.', text: 'Create a free account and keep your private notes safe behind a securely hashed password.' }) %>
+  <form class="card form" method="POST" action="/register">
+    <h1>Create account</h1>
+    <% errors.forEach(e => { %><div class="alert"><%= e %></div><% }) %>
+    <label>Username
+      <input name="username" required minlength="3" maxlength="20" pattern="[A-Za-z0-9_]+" title="3-20 letters, numbers or _" autocomplete="username">
+    </label>
+    <label>Email
+      <input name="email" type="email" required autocomplete="email">
+    </label>
+    <label>Password
+      <span class="pw">
+        <input id="pw" name="password" type="password" required minlength="8" autocomplete="new-password">
+        <button type="button" class="eye" data-toggle="pw">Show</button>
+      </span>
+    </label>
+    <div class="meter"><i id="bar"></i></div>
+    <small id="hint" class="mut">Use 8+ characters with a mix of types.</small>
+    <button class="btn wide">Create account</button>
+    <p class="mut c">Already registered? <a href="/login">Log in</a></p>
+  </form>
+</section>
+<%- include('partials/footer') %>

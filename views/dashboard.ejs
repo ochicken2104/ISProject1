@@ -1,0 +1,39 @@
+<%- include('partials/header') %>
+<section class="dash">
+  <div class="dash-head">
+    <h1>Hello, <span class="grad"><%= user %></span> 👋</h1>
+    <p class="mut">Your private workspace.</p>
+  </div>
+
+  <div class="stats">
+    <div class="card stat"><b><%= notes.length %></b><span>Notes</span></div>
+    <div class="card stat"><b><%= memberSince %></b><span>Member since</span></div>
+    <div class="card stat"><b>🔒</b><span>Encrypted session</span></div>
+  </div>
+
+  <form class="card form" method="POST" action="/notes">
+    <h3>New note</h3>
+    <% if (noteError) { %><div class="alert">Note must be 1-280 characters.</div><% } %>
+    <textarea id="note" name="content" rows="3" maxlength="280" required placeholder="What's on your mind?"></textarea>
+    <div class="row">
+      <small class="mut" id="count">0 / 280</small>
+      <button class="btn">Add note</button>
+    </div>
+  </form>
+
+  <div class="notes">
+    <% if (!notes.length) { %>
+      <p class="mut c">No notes yet. Add your first one above.</p>
+    <% } %>
+    <% notes.forEach(n => { %>
+      <article class="card note">
+        <p><%= n.content %></p>
+        <footer>
+          <small class="mut"><%= n.created_at.slice(0, 16) %></small>
+          <form method="POST" action="/notes/<%= n.id %>/delete"><button class="link">Delete</button></form>
+        </footer>
+      </article>
+    <% }) %>
+  </div>
+</section>
+<%- include('partials/footer') %>

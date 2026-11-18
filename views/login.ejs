@@ -1,0 +1,20 @@
+<%- include('partials/header') %>
+<section class="auth">
+  <%- include('partials/auth-side', { heading: 'Welcome back.', text: 'Log in to access your private dashboard and notes.' }) %>
+  <form class="card form" method="POST" action="/login">
+    <h1>Log in</h1>
+    <% errors.forEach(e => { %><div class="alert"><%= e %></div><% }) %>
+    <label>Username
+      <input name="username" required autocomplete="username">
+    </label>
+    <label>Password
+      <span class="pw">
+        <input id="pw" name="password" type="password" required autocomplete="current-password">
+        <button type="button" class="eye" data-toggle="pw">Show</button>
+      </span>
+    </label>
+    <button class="btn wide">Log in</button>
+    <p class="mut c">New here? <a href="/register">Create an account</a></p>
+  </form>
+</section>
+<%- include('partials/footer') %>

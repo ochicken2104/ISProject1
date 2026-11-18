@@ -1,0 +1,26 @@
+<%- include('partials/header') %>
+<section class="hero">
+  <span class="pill">Secure · Fast · Simple</span>
+  <h1>Your private space on the <span class="grad">secure web</span>.</h1>
+  <p>ISProject1 is a hardened web app hosted in the cloud with a custom domain, subdomains and a trusted SSL certificate.</p>
+  <div class="cta">
+    <a class="btn" href="/register">Create free account</a>
+    <a class="btn ghost" href="/login">I have an account</a>
+  </div>
+</section>
+
+<section class="grid">
+  <% [
+    ['lock',   'Hashed passwords',     'Credentials are never stored in plain text. bcrypt with a strong work factor protects every account.'],
+    ['globe',  'Custom domain + HTTPS', 'DNS, subdomains and a ZeroSSL certificate deliver an encrypted connection on every page.'],
+    ['shield', 'Validated input',      'Every form is checked in the browser and again on the server, with parameterised queries.'],
+    ['note',   'Private notes',        'Jot down ideas in a clean dashboard that only you can see.']
+  ].forEach(f => { %>
+    <article class="card feat">
+      <%- include('partials/icon', { name: f[0] }) %>
+      <h3><%= f[1] %></h3>
+      <p><%= f[2] %></p>
+    </article>
+  <% }) %>
+</section>
+<%- include('partials/footer') %>
